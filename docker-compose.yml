@@ -1,0 +1,30 @@
+version: "3.7"
+services:
+  api:
+    container_name: api
+    depends_on:
+      - db
+    build:
+      dockerfile: ./build/Dockerfile
+    image: php8.2:master
+    ports:
+      - published: 80
+        target: 80
+    volumes:
+        - "./:/var/www/html/"
+        - "./build/config/hosts/:/etc/apache2/sites-enabled/"
+
+  db:
+    container_name: database
+    environment:
+      POSTGRES_DB: orders_test
+      POSTGRES_PASSWORD: admin
+      POSTGRES_USER: admin
+    image: postgres:15.2-alpine
+    volumes:
+      - db-data:/var/lib/pgsql/data:rw
+    ports:
+      - published: 5432
+        target: 5432
+volumes:
+  db-data: {}
