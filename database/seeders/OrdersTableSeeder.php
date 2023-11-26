@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\Orders;
+use App\Models\Order;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -13,6 +13,6 @@ class OrdersTableSeeder extends Seeder
      */
     public function run(): void
     {
-        Orders::factory(2)->create();
+        Order::factory(2)->create();
     }
 }

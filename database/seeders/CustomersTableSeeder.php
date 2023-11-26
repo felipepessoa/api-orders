@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\Customers;
+use App\Models\Customer;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -13,6 +13,6 @@ class CustomersTableSeeder extends Seeder
      */
     public function run(): void
     {
-        Customers::factory(2)->create();
+        Customer::factory(2)->create();
     }
 }

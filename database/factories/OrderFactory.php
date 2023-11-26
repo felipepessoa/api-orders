@@ -2,7 +2,9 @@
 
 namespace Database\Factories;
 
-use App\Models\Orders;
+use App\Models\Order;
+use App\Models\Customer;
+use App\Models\Product;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -15,13 +17,11 @@ class OrderFactory extends Factory
      *
      * @return array<string, mixed>
      */
-    protected $model = Orders::class;
+    protected $model = Order::class;
     public function definition()
     {
         return [
-            'customer_id'   => \App\Models\Customers::factory(),
-            'product_id'    => \App\Models\Products::factory(),
-            'creation_date' => $this->faker->date,
+            'customer_id' => Customer::factory(),
         ];
     }
 

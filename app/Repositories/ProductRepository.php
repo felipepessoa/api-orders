@@ -2,41 +2,41 @@
 
 namespace App\Repositories;
 
-use App\Models\Products;
+use App\Models\Product;
 
 class ProductRepository extends BaseRepository
 {
-    public function __construct(Products $products)
+    public function __construct(Product $product)
     {
-        parent::__construct($products);
+        parent::__construct($product);
     }
 
     public function all()
     {
-        return Products::all();
+        return Product::all();
     }
 
     public function find($id)
     {
-        return Products::findOrFail($id);
+        return Product::findOrFail($id);
     }
 
     public function create($data)
     {
-        return Products::create($data);
+        return Product::create($data);
     }
 
     public function update($id, $data)
     {
-        $products = Products::findOrFail($id);
-        $products->update($data);
+        $product = Product::findOrFail($id);
+        $product->update($data);
 
-        return $products;
+        return $product;
     }
 
     public function delete($id)
     {
-        $products = Products::findOrFail($id);
-        $products->delete();
+        $product = Product::findOrFail($id);
+        $product->delete();
     }
 }

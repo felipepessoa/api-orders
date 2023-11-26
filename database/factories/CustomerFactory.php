@@ -4,6 +4,8 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 
+use App\Models\Customer;
+
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Model>
  */
@@ -14,7 +16,7 @@ class CustomerFactory extends Factory
      *
      * @return array<string, mixed>
      */
-    protected $model = Customers::class;
+    protected $model = Customer::class;
     public function definition()
     {
         return [

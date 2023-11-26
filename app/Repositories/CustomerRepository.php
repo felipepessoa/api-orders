@@ -2,33 +2,33 @@
 
 namespace App\Repositories;
 
-use App\Models\Customers;
+use App\Models\Customer;
 
 class CustomerRepository extends BaseRepository
 {
-    public function __construct(Customers $customers)
+    public function __construct(Customer $customer)
     {
-        parent::__construct($customers);
+        parent::__construct($customer);
     }
 
     public function all()
     {
-        return Customers::all();
+        return Customer::all();
     }
 
     public function find($id)
     {
-        return Customers::findOrFail($id);
+        return Customer::findOrFail($id);
     }
 
     public function create($data)
     {
-        return Customers::create($data);
+        return Customer::create($data);
     }
 
     public function update($id, $data)
     {
-        $customers = Customers::findOrFail($id);
+        $customers = Customer::findOrFail($id);
         $customers->update($data);
 
         return $customers;
@@ -36,7 +36,7 @@ class CustomerRepository extends BaseRepository
 
     public function delete($id)
     {
-        $customer = Customers::findOrFail($id);
+        $customer = Customer::findOrFail($id);
         $customer->delete();
     }
 }
