@@ -16,6 +16,7 @@ return new class extends Migration {
             $table->decimal('price', 5, 2);
             $table->string('photo');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

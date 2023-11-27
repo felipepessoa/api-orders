@@ -21,6 +21,7 @@ return new class extends Migration {
             $table->string('neighborhood');
             $table->string('zip_code');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
