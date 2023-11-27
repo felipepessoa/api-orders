@@ -17,7 +17,7 @@ services:
   db:
     container_name: database
     environment:
-      POSTGRES_DB: orders_test
+      POSTGRES_DB: orders_api
       POSTGRES_PASSWORD: admin
       POSTGRES_USER: admin
     image: postgres:15.2-alpine
