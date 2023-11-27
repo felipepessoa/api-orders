@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\OrderDetailRequest;
+use App\Mail\OrderCreated;
 use App\Repositories\OrderDetailRepository;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
@@ -41,6 +42,9 @@ class OrderDetailController extends Controller
         try {
             $data = $request->all();
             $orderDetail = $this->orderDetailRepository->create($data);
+
+            \Mail::to($orderDetail->order->customer->email)->send(new OrderCreated($orderDetail));
+
             return response()->json($orderDetail, 201);
         } catch (ValidationException $e) {
             return response()->json(['errors' => $e->errors()], 422);
