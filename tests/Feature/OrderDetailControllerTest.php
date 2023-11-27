@@ -96,6 +96,6 @@ class OrderDetailControllerTest extends TestCase
 
         $response = $this->putJson("/api/order-details/{$orderDetail->id}", $data);
         $response->assertStatus(422);
-        $response->assertJsonValidationErrors(['order_id', 'quantity', 'price']);
+        $response->assertJsonValidationErrors(['order_id', 'product_id', 'price']);
     }
 }

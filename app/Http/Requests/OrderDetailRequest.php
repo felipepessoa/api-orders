@@ -24,7 +24,7 @@ class OrderDetailRequest extends FormRequest
         return [
             'order_id'   => 'required|exists:orders,id',
             'product_id' => 'required|exists:products,id',
-            'quantity'   => 'required|numeric',
+            'quantity'   => 'required|integer',
             'price'      => 'required|numeric'
         ];
     }
