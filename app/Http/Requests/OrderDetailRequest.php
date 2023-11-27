@@ -22,9 +22,10 @@ class OrderDetailRequest extends FormRequest
     public function rules()
     {
         return [
-            'order_id'      => 'required|exists:orders,id',
-            'product_id'    => 'required|exists:products,id',
-            'creation_date' => 'required|date',
+            'order_id'   => 'required|exists:orders,id',
+            'product_id' => 'required|exists:products,id',
+            'quantity'   => 'required|numeric',
+            'price'      => 'required|numeric'
         ];
     }
 }

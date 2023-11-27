@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\OrderDetailRequest;
 use App\Repositories\OrderDetailRepository;
 use Illuminate\Http\Request;
+use Illuminate\Validation\ValidationException;
 
 class OrderDetailController extends Controller
 {
@@ -34,23 +36,27 @@ class OrderDetailController extends Controller
         }
     }
 
-    public function store(Request $request)
+    public function store(OrderDetailRequest $request)
     {
         try {
             $data = $request->all();
             $orderDetail = $this->orderDetailRepository->create($data);
             return response()->json($orderDetail, 201);
+        } catch (ValidationException $e) {
+            return response()->json(['errors' => $e->errors()], 422);
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
         }
     }
 
-    public function update(Request $request, $id)
+    public function update(OrderDetailRequest $request, $id)
     {
         try {
             $data = $request->all();
             $orderDetail = $this->orderDetailRepository->update($id, $data);
             return response()->json($orderDetail);
+        } catch (ValidationException $e) {
+            return response()->json(['errors' => $e->errors()], 422);
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
         }

@@ -22,9 +22,7 @@ class OrderRequest extends FormRequest
     public function rules()
     {
         return [
-            'customer_id'   => 'required|exists:customers,id',
-            'product_id'    => 'required|exists:products,id',
-            'creation_date' => 'required|date',
+            'customer_id' => 'required|exists:customers,id'
         ];
     }
 }

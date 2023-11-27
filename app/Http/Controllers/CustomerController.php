@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CustomerRequest;
 use App\Repositories\CustomerRepository;
 use Illuminate\Http\Request;
+use Illuminate\Validation\ValidationException;
 
 class CustomerController extends Controller
 {
@@ -34,23 +36,27 @@ class CustomerController extends Controller
         }
     }
 
-    public function store(Request $request)
+    public function store(CustomerRequest $request)
     {
         try {
             $data = $request->all();
             $customer = $this->customerRepository->create($data);
             return response()->json($customer, 201);
+        } catch (ValidationException $e) {
+            return response()->json(['errors' => $e->errors()], 422);
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
         }
     }
 
-    public function update(Request $request, $id)
+    public function update(CustomerRequest $request, $id)
     {
         try {
             $data = $request->all();
             $customer = $this->customerRepository->update($id, $data);
             return response()->json($customer);
+        } catch (ValidationException $e) {
+            return response()->json(['errors' => $e->errors()], 422);
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
         }
